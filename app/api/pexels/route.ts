@@ -1,5 +1,21 @@
 import { NextResponse } from 'next/server';
 
+interface PexelsPhotoSource {
+  original: string;
+  large2x: string;
+  large: string;
+}
+
+interface PexelsPhoto {
+  src: PexelsPhotoSource;
+  alt?: string;
+  photographer: string;
+}
+
+interface PexelsSearchResponse {
+  photos: PexelsPhoto[];
+}
+
 const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
 const BASE_URL = 'https://api.pexels.com/v1';
 
@@ -51,14 +67,14 @@ export async function GET(request: Request) {
         throw new Error(`Pexels API responded with status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = await response.json() as PexelsSearchResponse;
       console.log('Pexels API raw response:', data);
 
       if (!data.photos || !Array.isArray(data.photos)) {
         throw new Error('Invalid response format from Pexels API');
       }
 
-      const transformedPhotos = data.photos.map(photo => ({
+      const transformedPhotos = data.photos.map((photo: PexelsPhoto) => ({
         src: {
           original: photo.src.original,
           large2x: photo.src.large2x,
