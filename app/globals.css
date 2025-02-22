@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 229, 231, 235;
+  --background-start-rgb: 17, 24, 39;
+  --background-mid-rgb: 31, 41, 55;
+  --background-end-rgb: 17, 24, 39;
+
+  --background: 17, 24, 39;
+  --foreground: 229, 231, 235;
+  --muted: 31, 41, 55;
+  --muted-foreground: 156, 163, 175;
+  --border: 55, 65, 81;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-mid-rgb)) 50%,
+    rgb(var(--background-end-rgb))
+  );
+}
+
+/* Custom styles for form elements */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(156, 163, 175, 0.5);
+}
+
+select option {
+  background-color: rgb(31, 41, 55);
+  color: rgb(229, 231, 235);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom gradient overlay */
+.gradient-overlay {
+  background: linear-gradient(
+    45deg,
+    rgba(17, 24, 39, 0.7),
+    rgba(37, 99, 235, 0.1)
+  );
+} 
